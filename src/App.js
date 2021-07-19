@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import UserList from "./components/Userlist";
+import { Route, Link } from "react-router-dom";
+import { Navbar, Container, Button } from "react-bootstrap";
+import CreateUser from "./components/CreateUser";
+import UpdateUser from "./components/UpdateUser";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar
+        bg="dark"
+        variant="dark"
+        expand="lg"
+        className="justify-content-center"
+      >
+        <Container>
+          <Navbar.Brand href="#home">UserList</Navbar.Brand>
+        </Container>
+
+        <Link to="/createUser">
+          <Button className="ms-5 me-2" variant="success">
+            Create User
+          </Button>
+        </Link>
+      </Navbar>
+
+      <Route path="/createUser">
+        <CreateUser />
+      </Route>
+      <Route path="/" exact={true}>
+        <UserList />
+      </Route>
+      <Route exact path="/updateUser/:id" component={UpdateUser} />
+    </>
   );
 }
 
